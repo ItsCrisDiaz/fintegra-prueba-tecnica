@@ -95,7 +95,6 @@ export const countryList = {
   GW: "Guinea-Bissau",
   GY: "Guyana",
   HT: "Haiti",
-  HM: "Heard Island and McDonald Mcdonald Islands",
   VA: "Holy See (Vatican City State)",
   HN: "Honduras",
   HK: "Hong Kong",
