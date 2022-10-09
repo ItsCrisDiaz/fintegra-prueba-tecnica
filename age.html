@@ -8,7 +8,7 @@
   </head>
   <body>
     <script type="module" src="./age.js"></script>
-    <form action="">
+    <form action="" novalidate>
       <p>Los campos marcados con <b>(*)</b> son obligatorios</p>
       <div class="container">
         <label for="name">Nombre <b aria-hidden="true">(*)</b>:</label>
@@ -16,7 +16,9 @@
       </div>
       <div class="container">
         <label for="localization">Localización</label>
-        <select name="localization" id="localization"></select>
+        <select name="localization" id="localization">
+          <option value="none">Todos los paises</option>
+        </select>
       </div>
       <output name="result" for="name localization"></output>
       <button type="submit">Predecir edad</button>
