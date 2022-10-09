@@ -6,6 +6,7 @@ const nameError = document.querySelector("#nameError");
 const nameErrorMessage = document
   .querySelector("#nameErrorMessage")
   .content.cloneNode(true);
+const ageResult = document.querySelector("#ageResult");
 
 /**
  * Crea un elemento option con el valor y nombre del país
@@ -33,6 +34,15 @@ const createCountryList = () => {
 createCountryList();
 
 /**
+ * Convierte la primer letra en mayúscula
+ * @param {string} string - Caracter a convertir en mayúsculas
+ * @returns
+ */
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/**
  * Llama a la API de Agify a través de la URL que se le agregue
  * @param {*} url - URL de la API
  */
@@ -40,8 +50,15 @@ createCountryList();
 const callApi = async function (url) {
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data.name);
-  console.log(data.age);
+
+  if (data.age === null) {
+    return (ageResult.innerHTML =
+      "Oh vaya, parece que no podemos predecir tu edad");
+  } else {
+    return (ageResult.innerHTML = `${capitalizeFirstLetter(
+      data.name
+    )}, hemos predecido que tu edad es de <strong>${data.age}</strong> años`);
+  }
 };
 
 /**
@@ -57,13 +74,18 @@ const predictAge = function (event) {
   const selectedCountry = localizatonNode.value;
 
   if (name === "") {
+    // Si el usuario no agregó nombre
     nameError.appendChild(nameErrorMessage);
   } else if (selectedCountry === "none") {
+    // Si sólo agregó nombre y no país
     nameError.innerHTML = "";
-    callApi(`https://api.agify.io?name=${name}`);
+    ageResult.innerHTML = callApi(`https://api.agify.io?name=${name}`);
   } else {
+    // Si agregó nombre y país
     nameError.innerHTML = "";
-    callApi(`https://api.agify.io?name=${name}&country_id=${selectedCountry}`);
+    ageResult.innerHTML = callApi(
+      `https://api.agify.io?name=${name}&country_id=${selectedCountry}`
+    );
   }
 };
 
