@@ -85,7 +85,7 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-[role="status"]:empty {
+:is([role="status"], table):empty {
   display: none;
 }
 
@@ -105,7 +105,7 @@ body {
   margin-top: 1em;
 }
 
-/* Form related styles */
+/* Form styles */
 
 form {
   width: min(100%, 31.25rem);
@@ -167,4 +167,19 @@ form * {
 
 .age-result strong {
   font-size: 1.5em;
+}
+
+/* Table styles */
+
+table {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 18.75rem;
+}
+
+table th,
+table td {
+  padding: 0.5em;
+  border: 2px solid var(--brand-dark);
+  text-align: center;
 }
