@@ -78,6 +78,7 @@ select {
 body {
   display: grid;
   place-items: center;
+  gap: 1rem;
   padding: var(--padding);
   background-color: var(--brand-light);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -100,6 +101,10 @@ body {
   gap: 1em;
 }
 
+:is(form, [role="status"]) > * + * {
+  margin-top: 1em;
+}
+
 /* Form related styles */
 
 form {
@@ -112,10 +117,6 @@ form {
 
 form * {
   max-width: 100%;
-}
-
-form > * + * {
-  margin-top: 1em;
 }
 
 .submit {
@@ -134,10 +135,6 @@ form > * + * {
 }
 
 /* Messages styles */
-
-[role="status"] > * + * {
-  margin-top: 1em;
-}
 
 .error-message {
   border: 2px solid var(--error-dark);

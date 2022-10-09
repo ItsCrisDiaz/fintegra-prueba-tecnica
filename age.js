@@ -51,13 +51,17 @@ const callApi = async function (url) {
   const res = await fetch(url);
   const data = await res.json();
 
-  if (data.age === null) {
-    return (ageResult.innerHTML =
-      "Oh vaya, parece que no podemos predecir tu edad");
+  if (data.length) {
+    return console.log(data);
   } else {
-    return (ageResult.innerHTML = `${capitalizeFirstLetter(
-      data.name
-    )}, hemos predecido que tu edad es de <strong>${data.age}</strong> años`);
+    if (data.age === null) {
+      return (ageResult.innerHTML =
+        "Oh vaya, parece que no podemos predecir tu edad");
+    } else {
+      return (ageResult.innerHTML = `${capitalizeFirstLetter(
+        data.name
+      )}, hemos predecido que tu edad es de <strong>${data.age}</strong> años`);
+    }
   }
 };
 
@@ -68,24 +72,45 @@ const callApi = async function (url) {
 
 const predictAge = function (event) {
   event.preventDefault();
-  const nameNode = document.querySelector("#name");
-  const localizatonNode = document.querySelector("#localization");
-  const name = nameNode.value.toLowerCase();
-  const selectedCountry = localizatonNode.value;
+
+  // Revisa los valores seleccionados
+  const name = document.querySelector("#name").value.toLowerCase();
+  const selectedCountry = document.querySelector("#localization").value;
 
   if (name === "") {
     // Si el usuario no agregó nombre
     nameError.appendChild(nameErrorMessage);
-  } else if (selectedCountry === "none") {
-    // Si sólo agregó nombre y no país
-    nameError.innerHTML = "";
-    ageResult.innerHTML = callApi(`https://api.agify.io?name=${name}`);
+  } else if (name.indexOf(" ") === -1) {
+    if (selectedCountry === "none") {
+      // Si sólo agregó nombre y no país
+      nameError.innerHTML = "";
+      ageResult.innerHTML = callApi(`https://api.agify.io?name=${name}`);
+    } else {
+      // Si agregó nombre y país
+      nameError.innerHTML = "";
+      ageResult.innerHTML = callApi(
+        `https://api.agify.io?name=${name}&country_id=${selectedCountry}`
+      );
+    }
   } else {
-    // Si agregó nombre y país
-    nameError.innerHTML = "";
-    ageResult.innerHTML = callApi(
-      `https://api.agify.io?name=${name}&country_id=${selectedCountry}`
-    );
+    const nameList = name.split(" ");
+
+    // Crea el string de la petición con base en el array
+
+    const queryString = ["https://api.agify.io?"];
+    nameList.forEach((element) => {
+      queryString.push(`name[]=${element}&`);
+    });
+
+    if (selectedCountry === "none") {
+      const query = queryString.join("");
+      callApi(query);
+    } else {
+      // Añade el query de país
+      queryString.push(`country_id=${selectedCountry}`);
+      const query = queryString.join("");
+      callApi(query);
+    }
   }
 };
 

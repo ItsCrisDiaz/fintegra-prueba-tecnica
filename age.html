@@ -9,8 +9,21 @@
   </head>
   <body>
     <script type="module" src="./age.js"></script>
+    <h1>Predictor de edades</h1>
+    <p>
+      Este formulario tiene como objetivo predecir la edad de los nombres que
+      agregues
+    </p>
     <form action="" novalidate>
-      <p>Los campos marcados con <b>(*)</b> son obligatorios</p>
+      <h2>Instrucciones</h2>
+      <ul>
+        <li>El campo de nombre es obligatorio.</li>
+        <li>Si quieres agregar más de un nombre, sepáralos usando espacios.</li>
+        <li>
+          El campo de localización es completamente opcional, pero aumenta la
+          precisión de esta herramienta.
+        </li>
+      </ul>
       <div class="container">
         <label for="name">Nombre <b aria-hidden="true">(*)</b>:</label>
         <input id="name" type="text" required pattern="[a-zA-Z]" />
@@ -49,8 +62,19 @@
       <ul>
         <li>Si usas tildes, por favor eliminarlas.</li>
         <li>No usar caracteres especiales.</li>
-        <li>Si quieres buscar varios nombres, sepáralos por comas.</li>
+        <li>
+          Si quieres buscar varios nombres, sepáralos únicamente por espacios.
+        </li>
       </ul>
+    </template>
+
+    <template id="nameTableHeader">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Edad</th>
+        </tr>
+      </thead>
     </template>
   </body>
 </html>
