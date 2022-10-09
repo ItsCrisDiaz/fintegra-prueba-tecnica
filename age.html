@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predictor de edad</title>
+  </head>
+  <body>
+    <form action="">
+      <p>Los campos marcados con <b>(*)</b> son obligatorios</p>
+      <div class="container">
+        <label for="name">Nombre <b aria-hidden="true">(*)</b>:</label>
+        <input id="name" type="text" required />
+      </div>
+      <div class="container">
+        <label for="localization">Localización</label>
+        <select name="localization" id="localization"></select>
+      </div>
+      <output name="result" for="name localization"></output>
+      <button type="submit">Predecir edad</button>
+    </form>
+  </body>
+</html>
