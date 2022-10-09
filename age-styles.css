@@ -71,6 +71,8 @@ select {
   --padding: clamp(1rem, 5%, 1.5rem);
   --brand-dark: hsl(43, 74%, 38%);
   --brand-light: hsl(43, 74%, 71%);
+  --error-dark: hsl(0, 82%, 48%);
+  --error-light: hsl(0, 82%, 94%);
 }
 
 body {
@@ -82,7 +84,7 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-p:empty {
+[role="status"]:empty {
   display: none;
 }
 
@@ -133,7 +135,33 @@ form > * + * {
 
 /* Messages styles */
 
-.age-result {
+[role="status"] > * + * {
+  margin-top: 1em;
+}
+
+.error-message {
+  border: 2px solid var(--error-dark);
+  background-color: var(--error-light);
+  border-radius: 1em;
+  padding: 0.5em var(--padding);
+  color: var(--error-dark);
+}
+
+.error-message svg {
+  stroke: currentColor;
+  width: 1em;
+  width: 1cap;
+  height: 1em;
+  height: 1cap;
+  margin-inline-end: 0.5ch;
+  transform: translateY(0.3ex);
+}
+
+.error-message p {
+  vertical-align: middle;
+}
+
+.error-message .age-result {
   display: block;
   text-align: center;
   font-weight: bold;

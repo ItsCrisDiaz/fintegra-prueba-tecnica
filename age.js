@@ -2,6 +2,10 @@ import { countryList } from "./country-list.js";
 
 const select = document.querySelector("select");
 const form = document.querySelector("form");
+const nameError = document.querySelector("#nameError");
+const nameErrorMessage = document
+  .querySelector("#nameErrorMessage")
+  .content.cloneNode(true);
 
 /**
  * Crea un elemento option con el valor y nombre del país
@@ -52,9 +56,13 @@ const predictAge = function (event) {
   const name = nameNode.value.toLowerCase();
   const selectedCountry = localizatonNode.value;
 
-  if (selectedCountry === "none") {
+  if (name === "") {
+    nameError.appendChild(nameErrorMessage);
+  } else if (selectedCountry === "none") {
+    nameError.innerHTML = "";
     callApi(`https://api.agify.io?name=${name}`);
   } else {
+    nameError.innerHTML = "";
     callApi(`https://api.agify.io?name=${name}&country_id=${selectedCountry}`);
   }
 };
