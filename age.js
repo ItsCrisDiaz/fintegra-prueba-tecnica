@@ -9,6 +9,7 @@ const nameErrorMessage = `<p>
       height="24"
       viewBox="0 0 24 24"
       fill="none"
+      aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -169,15 +170,12 @@ const predictAge = function (event) {
       queryString.push(`name[]=${element}&`);
     });
 
-    if (selectedCountry === "none") {
-      const query = queryString.join("");
-      callApi(query);
-    } else {
+    if (!selectedCountry === "none") {
       // Añade el query de país
       queryString.push(`country_id=${selectedCountry}`);
-      const query = queryString.join("");
-      callApi(query);
     }
+    const query = queryString.join("");
+    callApi(query);
   }
 };
 

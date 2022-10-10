@@ -18,14 +18,17 @@
       <h2>Instrucciones</h2>
       <ul>
         <li>El campo de nombre es obligatorio.</li>
-        <li>Si quieres agregar más de un nombre, sepáralos usando espacios.</li>
+        <li>
+          Si quieres agregar más de un nombre, sepáralos usando espacios.
+          <strong>Esta herramienta predecirá la edad por nombre.</strong>
+        </li>
         <li>
           El campo de localización es completamente opcional, pero aumenta la
           precisión de esta herramienta.
         </li>
       </ul>
       <div class="container">
-        <label for="name">Nombre <b aria-hidden="true">(*)</b>:</label>
+        <label for="name">Nombre:</label>
         <input id="name" type="text" required pattern="[a-zA-Z]" />
         <div role="status" class="error-message" id="nameError"></div>
       </div>

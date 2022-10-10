@@ -89,9 +89,12 @@ body {
   display: none;
 }
 
-:where(input, button, select):focus {
+:is(input, button, select) {
   --outline-size: max(2px, 0.08em);
   --outline-color: currentColor;
+}
+
+:is(input, button, select):focus {
   outline: var(--outline-size) solid var(--outline-color);
   outline-offset: var(--outline-size);
 }
